@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANLTX</title>
+<script>
+(function () {
+    function getCookie(name) {
+        var m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+        return m ? decodeURIComponent(m[1]) : null;
+    }
+    var supported = ["ru", "en"];
+    var lang = getCookie("lang");
+    if (supported.indexOf(lang) === -1) {
+        var nav = (navigator.language || "ru").slice(0, 2).toLowerCase();
+        lang = supported.indexOf(nav) !== -1 ? nav : "ru";
+    }
+    location.replace("/" + lang + "/");
+})();
+</script>
+</head>
+<body>
+<noscript><p><a href="/ru/">Русский</a> / <a href="/en/">English</a></p></noscript>
+</body>
+</html>
