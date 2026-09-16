@@ -1,0 +1,14 @@
+---
+layout: base.njk
+eleventyComputed:
+    translationUrl: "{{ collections.all | postTranslationUrl((translationId or slug), lang, section) }}"
+---
+<section class="section-post">
+    <h2 class="section-post__title">{{ title }}</h2>
+    {% if dateLabel %}<time class="section-post__meta" datetime="{{ date | isoDate }}">{{ dateLabel }}</time>{% endif %}
+    <div class="section-post__body">
+        {{ content | safe }}
+    </div>
+</section>
+
+{% include 'disqus-ru.njk' %}

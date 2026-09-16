@@ -1,0 +1,57 @@
+{
+    "siteTitle": "ANLTX — life through the lens of analytics",
+    "nav": {
+        "log": "Log",
+        "things": "Things",
+        "about": "About"
+    },
+    "heroHtml": "About <i>life</i>, <i>work</i>, <i>analytics</i>",
+    "sections": {
+        "log": "Log",
+        "things": "Things",
+        "about": "About"
+    },
+    "logSubtitle": "Latest things I want to tell you about",
+    "thingsSubtitle": "Useful articles/tools I actually use",
+    "aboutBody": "In analytics since 2020. I believe in numbers. I explain the complex simply. I build systems and solve problems.",
+    "aboutMore": "More...",
+    "roller-technology": [
+        "Google Analytics",
+        "Yandex.Metrica",
+        "Yandex Tag Manager",
+        "Amplitude",
+        "Matomo",
+        "Hotjar",
+        "Tableau",
+        "Power BI",
+        "Looker Studio",
+        "Metabase",
+        "DBT",
+        "ClickHouse",
+        "Google Tag Manager",
+        "Jupyter",
+        "Airflow",
+        "BigQuery",
+        "Mixpanel",
+        "PostgreSQL"
+    ],
+    "roller-tools": [
+        "SQL",
+        "Python",
+        "JavaScript",
+        "ETL",
+        "A-B testing",
+        "DBMS",
+        "CRM",
+        "ML",
+        "BI",
+        "OLAP",
+        "Git",
+        "KPI",
+        "DWH",
+        "RFM",
+        "API"
+    ],
+    "backToAll": "← All things",
+    "switchLang": "RU"
+}

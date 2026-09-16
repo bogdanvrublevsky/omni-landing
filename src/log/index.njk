@@ -1,0 +1,25 @@
+---
+layout: base.njk
+pagination:
+    data: locales
+    size: 1
+    alias: lang
+permalink: "{{ '/log/' | localeUrl(lang) }}"
+eleventyComputed:
+    title: "{{ i18n[lang].sections.log }} — {{ i18n[lang].siteTitle }}"
+---
+<section class="section-log">
+    <h3 class="section-log__heading">{{ i18n[lang].sections.log }}</h3>
+    <p>{{ i18n[lang].logSubtitle }}</p>
+    <div class="section-log__list">
+        {%- for post in collections.log | reverse %}
+        {%- if post.data.lang == lang %}
+        <article class="card">
+            <time class="card__time" datetime="{{ post.date | isoDate }}">{{ post.data.dateLabel }}</time>
+            <h4 class="card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h4>
+            <span>{{ post.data.description }}</span>
+        </article>
+        {%- endif %}
+        {%- endfor %}
+    </div>
+</section>

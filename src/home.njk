@@ -1,0 +1,76 @@
+---
+layout: base.njk
+pagination:
+    data: locales
+    size: 1
+    alias: lang
+permalink: "{{ '/' | localeUrl(lang) }}"
+eleventyComputed:
+    title: "{{ i18n[lang].siteTitle }}"
+---
+<section class="section-hero">
+    <h2 class="section-hero__title">{{ i18n[lang].heroHtml | safe }}</h2>
+</section>
+<section class="section-log">
+    <h3 class="section-log__heading">{{ i18n[lang].sections.log }}</h3>
+    <div class="section-log__list">
+        {%- for post in collections.log | reverse %}
+        {%- if post.data.lang == lang %}
+        <article class="card">
+            <time class="card__time" datetime="{{ post.date | isoDate }}">{{ post.data.dateLabel }}</time>
+            <h4 class="card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h4>
+            <span>{{ post.data.description }}</span>
+        </article>
+        {%- endif %}
+        {%- endfor %}
+    </div>
+</section>
+<section class="section-things">
+    <h3 class="section-things__heading">{{ i18n[lang].sections.things }}</h3>
+    <div class="section-things__list">
+        {%- for post in collections.things | reverse %}
+        {%- if post.data.lang == lang %}
+        <article class="card">
+            <h4 class="card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h4>
+            <span>{{ post.data.description }}</span>
+            {%- if post.data.tags | displayTags | length %}
+            <div class="card__tags">
+                {%- for t in post.data.tags | displayTags %}
+                <a href="{{ ('/things/tag/' + (t | slugify) + '/') | localeUrl(lang) }}" class="card__tag">#{{ t }}</a>
+                {%- endfor %}
+            </div>
+            {%- endif %}
+        </article>
+        {%- endif %}
+        {%- endfor %}
+    </div>
+</section>
+<section class="section-about" id="about">
+    <img class="section-about__image" src="/founder.png" alt="Богдан Врублевский">
+    <div class="section-about__content">
+        {%- set toolsDuration = i18n[lang]["roller-tools"] | rollerDuration %}
+        {%- set technologyDuration = i18n[lang]["roller-technology"] | rollerDuration %}
+        <div class="roller">
+            {%- for copy in ["a", "b", "c"] %}
+            <div class="roller__track" style="animation-duration: {{ toolsDuration }}s">
+            {%- for item in i18n[lang]["roller-tools"] %}
+            <span>{{ item }}</span>
+            {%- endfor %}
+            </div>
+            {%- endfor %}
+        </div>
+        <div>
+        <h3 class="section-about__heading">{{ i18n[lang].sections.about }}</h3>
+        <p>{{ i18n[lang].aboutBody }}</p>
+        </div>
+        <div class="roller">
+            {%- for copy in ["a", "b", "c"] %}
+            <div class="roller__track roller__track--backward" style="animation-duration: {{ technologyDuration }}s">
+            {%- for item in i18n[lang]["roller-technology"] %}
+            <span>{{ item }}</span>
+            {%- endfor %}
+            </div>
+            {%- endfor %}
+        </div>
+    </div>
+</section>

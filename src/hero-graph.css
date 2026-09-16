@@ -1,0 +1,23 @@
+.anim-container {
+    width: 100%;
+    height: 200px;
+    background: var(--color-background-deep);
+    padding: var(--space-1);
+    display: flex;
+    justify-content: stretch;
+    align-content: stretch;
+}
+
+.hero-graph {}
+
+.hero-graph-panel {
+    fill: url(#heroPanelGradient);
+}
+
+.hero-graph-panel-stop-start {
+    stop-color: transparent;
+}
+
+.hero-graph-panel-stop-end {
+    stop-color: color-mix(in srgb, var(--color-background-deep), black 15%);
+}

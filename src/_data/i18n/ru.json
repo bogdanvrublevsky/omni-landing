@@ -1,0 +1,57 @@
+{
+    "siteTitle": "ANLTX — жизнь сквозь призму аналитики",
+    "nav": {
+        "log": "Лог",
+        "things": "Штуки",
+        "about": "Эбаут"
+    },
+    "heroHtml": "Про <i>жизнь</i>, <i>работу</i>, <i>аналитику</i>",
+    "sections": {
+        "log": "Лог",
+        "things": "Штуки",
+        "about": "Обо мне"
+    },
+    "logSubtitle": "Последние события о которых я хочу поведать",
+    "thingsSubtitle": "Полезные статьи/инструменты которые я сам использую",
+    "aboutBody": "В аналитике с 2020. Верю в цифры и в то, что их можно объяснить без матана. Сам работаю руками. Строю системы и решаю проблемы. Иногда — чужие. Чаще — свои. Пишу о данных простым языком",
+    "aboutMore": "Еще...",
+    "roller-technology": [
+        "Google Analytics",
+        "Яндекс.Метрика",
+        "Яндекс.Менеджер Тегов",
+        "Amplitude",
+        "Matomo",
+        "Hotjar",
+        "Tableau",
+        "Power BI",
+        "Looker Studio",
+        "Metabase",
+        "DBT",
+        "ClickHouse",
+        "Google Tag Manager",
+        "Jupyter",
+        "Airflow",
+        "BigQuery",
+        "Mixpanel",
+        "PostgreSQL"
+    ],
+    "roller-tools": [
+        "SQL",
+        "Python",
+        "JavaScript",
+        "ETL",
+        "A-B тесты",
+        "СУБД",
+        "CRM",
+        "ML",
+        "BI",
+        "OLAP",
+        "Git",
+        "KPI",
+        "DWH",
+        "RFM",
+        "API"
+    ],
+    "backToAll": "← Все штуки",
+    "switchLang": "EN"
+}

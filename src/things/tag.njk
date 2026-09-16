@@ -1,0 +1,33 @@
+---
+layout: base.njk
+pagination:
+    data: collections.thingsTagPages
+    size: 1
+    alias: entry
+permalink: "/{{ entry.lang }}/things/tag/{{ entry.tag | slugify }}/"
+eleventyComputed:
+    lang: "{{ entry.lang }}"
+    translationUrl: "{{ entry.translationUrl }}"
+    title: "#{{ entry.tag }} — {{ i18n[entry.lang].sections.things }} — {{ i18n[entry.lang].siteTitle }}"
+---
+<section class="section-things">
+    <h3 class="section-things__heading">{{ entry.tag }}</h3>
+    <p><a class="back-link" href="{{ '/things/' | localeUrl(lang) }}">{{ i18n[lang].backToAll }}</a></p>
+    <div class="section-things__list">
+        {%- for post in collections.things | reverse %}
+        {%- if post.data.lang == entry.lang and entry.tag in (post.data.tags | displayTags) %}
+        <article class="card">
+            <h4 class="card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h4>
+            <span>{{ post.data.description }}</span>
+            {%- if post.data.tags | displayTags | length %}
+            <div class="card__tags">
+                {%- for t in post.data.tags | displayTags %}
+                <a href="{{ ('/things/tag/' + (t | slugify) + '/') | localeUrl(lang) }}" class="card__tag">#{{ t }}</a>
+                {%- endfor %}
+            </div>
+            {%- endif %}
+        </article>
+        {%- endif %}
+        {%- endfor %}
+    </div>
+</section>
