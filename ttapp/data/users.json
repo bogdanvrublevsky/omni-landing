@@ -1,0 +1,8 @@
+{
+    "bogdan_admin": {
+        "password": "ROTATED_SET_VIA_ENV_BEFORE_USE",
+        "role": "admin",
+        "token": "",
+        "expires": 0
+    }
+}

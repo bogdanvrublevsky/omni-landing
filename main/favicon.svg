@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+
+    <defs>
+        <linearGradient id="aGradient" x1="40" y1="220" x2="200" y2="20" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#1E88E5"/>
+            <stop offset="100%" stop-color="#00C2FF"/>
+        </linearGradient>
+
+        <linearGradient id="slashGradient" x1="30" y1="170" x2="235" y2="120" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#1E88E5"/>
+            <stop offset="55%" stop-color="#FF6A00"/>
+            <stop offset="100%" stop-color="#FFD54F"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Main A -->
+    <path d="M128 24
+       L44 224
+       L78 224
+       L128 98
+       L178 224
+       L212 224
+       Z" fill="url(#aGradient)"/>
+
+    <!-- Inner cut -->
+    <path d="M128 72
+       L90 168
+       L111 168
+       L128 123
+       L145 168
+       L166 168
+       Z" fill="white"/>
+
+    <!-- Dynamic stroke -->
+    <path d="M30 188
+       C78 170 126 146 226 128
+       L214 147
+       C132 160 88 182 42 205
+       Z" fill="url(#slashGradient)"/>
+
+</svg>

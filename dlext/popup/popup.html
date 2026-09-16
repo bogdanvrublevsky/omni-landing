@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DataExplorer</title>
+    <link rel="stylesheet" href="./popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header class="popup__header">
+        <h1 class="popup__title">DataExplorer</h1>
+        <span id="connectionStatus" class="status status--disconnected">Disconnected</span>
+      </header>
+
+      <section class="popup__section">
+        <div class="field">
+          <span class="field__label">Page</span>
+          <span id="pageTitle" class="field__value">—</span>
+        </div>
+        <div class="field">
+          <span class="field__label">URL</span>
+          <span id="pageUrl" class="field__value field__value--url">—</span>
+        </div>
+        <div class="field">
+          <span class="field__label">Connected at</span>
+          <span id="connectedAt" class="field__value">—</span>
+        </div>
+      </section>
+
+      <section class="popup__section">
+        <h2 class="popup__subtitle">Scripts</h2>
+        <div id="scriptsSummary" class="summary">0 found</div>
+        <ul id="scriptsList" class="scripts"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="./popup.js"></script>
+  </body>
+</html>

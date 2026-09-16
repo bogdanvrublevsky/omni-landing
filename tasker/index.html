@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasker</title>
+    <style>
+        :root {
+            --header-height: 50px;
+        }
+
+        * {
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-flow: column nowrap;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        main {
+            flex: 1 1 auto;
+        }
+
+        header,
+        footer {
+            display: flex;
+            background: #234;
+            height: var(--header-height);
+            width: 100%;
+            justify-content: space-between;
+            position: sticky;
+            left: 0;
+        }
+
+        header {
+            top: 0;
+            display: flex;
+        }
+
+        footer {
+            bottom: 0;
+        }
+
+        #sect--user {
+            height: 100%;
+
+        }
+
+        .prof-pic {
+            display: flex;
+            border-radius: 50%;
+            background-color: palegoldenrod;
+            height: 90%;
+            width: 90%
+        }
+
+
+
+        /* style="display: flex; justify-content:center; align-items:center; height: var(--header-height); width: var(--header-height);" */
+    </style>
+</head>
+
+<body>
+    <header>
+        <section id="sect--user">
+            <img class="prof-pic">
+        </section>
+    </header>
+
+    <main>
+        <section id="sect--settings"></section>
+        <section id="sect--tasks"></section>
+    </main>
+    <footer></footer>
+</body>
+
+</html>

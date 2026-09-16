@@ -1,0 +1,9 @@
+{
+  "name": "geom-lib",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pure geometry library for procedurally generating Goldberg-polyhedron planet meshes (icosahedron -> geodesic subdivision -> dual). No DOM, no rendering, no runtime dependencies.",
+  "main": "geom.lib.js",
+  "exports": "./geom.lib.js"
+}

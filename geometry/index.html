@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry</title>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.166.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.166.1/examples/jsm/"
+        }
+    }
+    </script>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #111318;
+            color: #e6e8eb;
+        }
+
+        aside {
+            flex: 0 0 260px;
+            padding: 20px;
+            border-right: 1px solid #262a33;
+            overflow-y: auto;
+        }
+
+        aside h1 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 0 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #8a8f99;
+            margin: 16px 0 6px;
+        }
+
+        label:first-of-type {
+            margin-top: 0;
+        }
+
+        select {
+            width: 100%;
+            padding: 7px 8px;
+            background: #1a1d24;
+            color: #e6e8eb;
+            border: 1px solid #2e333d;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        select:disabled {
+            opacity: 0.5;
+        }
+
+        #viewer {
+            flex: 1;
+            position: relative;
+        }
+
+        #viewer canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <h1>Planet Generator</h1>
+
+        <label for="frequency">Planet size (frequency)</label>
+        <input type="range" id="frequency" min="1" max="20" step="1" value="4">
+        <p id="frequency-readout"></p>
+
+        <label for="download-btn">File</label>
+        <button id="download-btn" type="button">Download planet (.json)</button>
+        <button id="load-btn" type="button">Load planet</button>
+        <input type="file" id="load-input" accept="application/json" hidden>
+    </aside>
+
+    <div id="viewer"></div>
+
+    <script type="module" src="./render.js"></script>
+</body>
+
+</html>
