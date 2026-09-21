@@ -1,0 +1,17 @@
+{% Title = "Штуки — ANLTX" %}
+{% NavThingsActive = "site-nav__link--active" %}
+{% include site-head.html %}
+<section class="section-things">
+    <h3 class="section-things__heading">Штуки</h3>
+    <p>Полезные статьи/инструменты которые я сам использую</p>
+    <div class="section-things__list">
+        {% for thing in Things %}
+        <article class="card">
+            <h4 class="card__title"><a href="{% thing.Url %}">{% thing.Title %}</a></h4>
+            <span>{% thing.Description %}</span>
+            <div class="card__tags">{% thing.TagsHtml %}</div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% include site-foot.html %}

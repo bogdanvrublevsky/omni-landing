@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+
+    <defs>
+        <linearGradient id="aGradient" x1="28" y1="224" x2="228" y2="24" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#DD92F6" />
+            <stop offset="68%" stop-color="#DD92F6" />
+            <stop offset="70%" stop-color="#C7C8FF" />
+            <stop offset="74%" stop-color="#e0e1f7" />
+            <stop offset="78%" stop-color="#C7C8FF" />
+            <stop offset="80%" stop-color="#DD92F6" />
+            <stop offset="100%" stop-color="#DD92F6" />
+            <animateTransform attributeName="gradientTransform"
+                type="translate"
+                values="-180 180; -180 180; 80 -80"
+                keyTimes="0; 0.8; 1"
+                dur="10s" repeatCount="indefinite" />
+        </linearGradient>
+    </defs>
+
+    <path fill="none" stroke="url(#aGradient)" stroke-width="8" stroke-linejoin="miter" d="
+        M28 24
+        L228 24
+        L228 224
+        L178 224
+        L178 174
+        L78 174
+        L78 224
+        L28 224
+        Z
+        M78 74
+        L178 74
+        L178 124
+        L78 124
+        Z" />
+
+</svg>

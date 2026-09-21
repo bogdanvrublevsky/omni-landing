@@ -1,0 +1,111 @@
+{% Title = "RFM-анализ на SQL — ANLTX" %}
+{% Heading = "RFM-анализ на SQL" %}
+{% Date = "2026-09-14" %}
+{% DateLabel = "14 сентября 2026" %}
+{% Description = "Клиенты, которые покупали недавно, часто и много — самые ценные..." %}
+{% Tags = "sql, rfm, product" %}
+{% PageUrl = "https://anltx.xyz/ru/things/sql-rfm/" %}
+{% PageIdentifier = "things/sql-rfm" %}
+{% NavThingsActive = "site-nav__link--active" %}
+{% Template = "post.html" %}
+<p><b>RFM</b> — это сегментация клиентов по трём метрикам:
+<b>Recency</b> — как давно клиент совершал покупку/действие. Показывает, "жив" ли клиент.
+<b>Frequency</b> — как часто он покупает. Показывает уровень вовлечённости и лояльности.
+<b>Monetary</b> — сколько денег он приносит. Показывает ценность клиента.</p>
+
+<p>Логика простая: клиенты, которые покупали недавно, часто и много — самые ценные, а те, кто давно не появлялся и покупал редко/мало — кандидаты на отток. На основе этого строят точечные маркетинговые действия: VIP-программы, реактивационные кампании, персональные предложения — вместо того чтобы обращаться со всей базой одинаково.</p>
+
+<p><b>Ключевые нюансы</b></p>
+
+<p>Метод разбиения на баллы. NTILE делит клиентов на равные по количеству группы — удобно, но если распределение сильно скошено (у многих бизнесов 80% выручки делают 5% клиентов), лучше задавать фиксированные пороги через CASE WHEN.</p>
+
+<p>Направление скоринга.</p>
+
+<p>Recency инвертируется — чем меньше дней прошло, тем выше балл. Frequency и Monetary — чем больше, тем выше балл. Легко ошибиться и перепутать сортировку.</p>
+
+<p>Окно анализа.</p>
+
+<p>Период в данных сильно влияет на результат — слишком короткое окно урезает Frequency, слишком длинное — тащит устаревшее поведение.</p>
+
+<p>Что считать Monetary.</p>
+
+<p>Депозиты/выручка/чистая прибыль — не одно и то же. Для бизнеса важнее не "оборот", а реальная маржинальность клиента.</p>
+
+<p>Статичность.</p>
+
+<p>Классический RFM — это снимок на момент расчёта, а не прогноз. Он не предсказывает будущее поведение, только описывает прошлое — поэтому его часто комбинируют с churn-моделями или LTV-прогнозами.</p>
+
+<p>Присвоение сегментов через CASE в конце — это ручная бизнес-логика, пороги нужно подбирать под конкретную отрасль и объём базы, а не использовать универсальный шаблон.</p>
+
+<p>Дальше — сам SQL-запрос, который считает метрики, переводит их в баллы и присваивает сегменты.</p>
+
+<pre><code>WITH customer_metrics AS (
+    SELECT
+        customer_id,
+        DATE_PART('day', CURRENT_DATE - MAX(order_date)) AS recency_days,
+        COUNT(DISTINCT order_id) AS frequency,
+        SUM(order_amount) AS monetary
+    FROM orders
+    WHERE order_date &gt;= CURRENT_DATE - INTERVAL '365 days'
+    GROUP BY customer_id
+),
+
+rfm_scores AS (
+    SELECT
+        customer_id,
+        recency_days,
+        frequency,
+        monetary,
+        -- Чем меньше recency_days, тем выше балл (5 = купил недавно)
+        NTILE(5) OVER (ORDER BY recency_days DESC) AS r_score,
+        NTILE(5) OVER (ORDER BY frequency ASC) AS f_score,
+        NTILE(5) OVER (ORDER BY monetary ASC) AS m_score
+    FROM customer_metrics
+),
+
+rfm_segments AS (
+    SELECT
+        customer_id,
+        recency_days,
+        frequency,
+        monetary,
+        r_score,
+        f_score,
+        m_score,
+        CONCAT(r_score, f_score, m_score) AS rfm_cell,
+        (r_score + f_score + m_score) AS rfm_total
+    FROM rfm_scores
+)
+
+SELECT
+    customer_id,
+    recency_days,
+    frequency,
+    monetary,
+    r_score,
+    f_score,
+    m_score,
+    rfm_cell,
+    rfm_total,
+    CASE
+        WHEN r_score &gt;= 4 AND f_score &gt;= 4 AND m_score &gt;= 4 THEN 'Champions'
+        WHEN r_score &gt;= 3 AND f_score &gt;= 3 THEN 'Loyal Customers'
+        WHEN r_score &gt;= 4 AND f_score &lt;= 2 THEN 'New Customers'
+        WHEN r_score &lt;= 2 AND f_score &gt;= 3 THEN 'At Risk'
+        WHEN r_score &lt;= 2 AND f_score &lt;= 2 AND m_score &lt;= 2 THEN 'Lost'
+        ELSE 'Others'
+    END AS segment
+FROM rfm_segments
+ORDER BY rfm_total DESC;</code></pre>
+
+<p><b>Как это работает</b><br>
+customer_metrics — считает базовые метрики для каждого клиента: сколько дней прошло с последнего заказа, сколько всего заказов и на какую сумму.<br>
+rfm_scores — с помощью NTILE(5) разбивает клиентов на 5 равных групп (квинтилей) по каждой метрике, получая баллы от 1 до 5.<br>
+rfm_segments — объединяет баллы в код ячейки (например, "555" — лучшие клиенты) и суммарный балл.<br>
+Финальный запрос — присваивает понятные названия сегментов на основе баллов.</p>
+
+<p><b>Где я использовал</b></p>
+
+<p><b>Трэвел</b>: для отелей и туристических агентств RFM анализирует актуальность (последнее пребывание), частоту (повторные визиты) и денежную ценность (расходы), помогая выявлять лояльных клиентов для специальных предложений и увеличивая количество повторных бронирований.</p>
+
+<p><b>Электронная коммерция</b>: RFM в электронной коммерции помогает выявлять ценных клиентов на основе недавних и частых покупок, сегментируя их для целевых акций, чтобы стимулировать повторные покупки и увеличивать продажи за счёт персонализированных предложений.</p>

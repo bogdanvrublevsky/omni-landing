@@ -1,0 +1,11 @@
+{% include site-head.html %}
+<section class="section-post">
+    <h2 class="section-post__title">{% Heading %}</h2>
+    <time class="section-post__meta" datetime="{% Date %}">{% DateLabel %}</time>
+    <div class="section-post__body">
+        {% Content %}
+    </div>
+</section>
+
+{% include disqus-ru.html %}
+{% include site-foot.html %}

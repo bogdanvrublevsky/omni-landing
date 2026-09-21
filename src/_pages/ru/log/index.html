@@ -1,0 +1,17 @@
+{% Title = "Лог — ANLTX" %}
+{% NavLogActive = "site-nav__link--active" %}
+{% include site-head.html %}
+<section class="section-log">
+    <h3 class="section-log__heading">Лог</h3>
+    <p>Последние события о которых я хочу поведать</p>
+    <div class="section-log__list">
+        {% for post in Posts %}
+        <article class="card">
+            <time class="card__time" datetime="{% post.Date %}">{% post.DateLabel %}</time>
+            <h4 class="card__title"><a href="{% post.Url %}">{% post.Title %}</a></h4>
+            <span>{% post.Description %}</span>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% include site-foot.html %}

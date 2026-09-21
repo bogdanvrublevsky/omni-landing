@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+
+    <path fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="miter" d="
+        M28 24
+        L228 24
+        L228 224
+        L178 224
+        L178 174
+        L78 174
+        L78 224
+        L28 224
+        Z
+        M78 74
+        L178 74
+        L178 124
+        L78 124
+        Z" />
+
+</svg>

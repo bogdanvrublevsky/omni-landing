@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/fav-white.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prosto+One&display=swap" rel="stylesheet">
+    <title>{% Title %}</title>
+    <script>(function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-K9R6XK6R');</script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="logo" href="/ru/">
+                <img class="logo__image" src="/img/new-fav.svg">
+                <h1>anltx.xyz</h1>
+            </a>
+            <nav class="site-nav">
+                <a href="/ru/log/" class="site-nav__link {% NavLogActive %}">#Лог</a>
+                <a href="/ru/things/" class="site-nav__link {% NavThingsActive %}">#Штуки</a>
+                <a href="/ru/#about" class="site-nav__link">#Эбаут</a>
+            </nav>
+        </div>
+    </header>
+    <main>

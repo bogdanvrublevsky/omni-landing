@@ -1,0 +1,49 @@
+{% Title = "ANLTX — жизнь сквозь призму аналитики" %}
+{% include site-head.html %}
+<section class="section-hero">
+    <h2 class="section-hero__title">Про <i>жизнь</i>, <i>работу</i>, <i>аналитику</i></h2>
+</section>
+<section class="section-log">
+    <h3 class="section-log__heading">Лог</h3>
+    <div class="section-log__list">
+        {% for post in Posts %}
+        <article class="card">
+            <time class="card__time" datetime="{% post.Date %}">{% post.DateLabel %}</time>
+            <h4 class="card__title"><a href="{% post.Url %}">{% post.Title %}</a></h4>
+            <span>{% post.Description %}</span>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+<section class="section-things">
+    <h3 class="section-things__heading">Штуки</h3>
+    <div class="section-things__list">
+        {% for thing in Things %}
+        <article class="card">
+            <h4 class="card__title"><a href="{% thing.Url %}">{% thing.Title %}</a></h4>
+            <span>{% thing.Description %}</span>
+            <div class="card__tags">{% thing.TagsHtml %}</div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+<section class="section-about" id="about">
+    <img class="section-about__image" src="/img/founder.png" alt="Богдан Врублевский">
+    <div class="section-about__content">
+        <div class="roller">
+            <div class="roller__track" style="animation-duration: {% RollerToolsDuration %}s">{% for item in RollerTools %}<span>{% item %}</span>{% endfor %}</div>
+            <div class="roller__track" style="animation-duration: {% RollerToolsDuration %}s">{% for item in RollerTools %}<span>{% item %}</span>{% endfor %}</div>
+            <div class="roller__track" style="animation-duration: {% RollerToolsDuration %}s">{% for item in RollerTools %}<span>{% item %}</span>{% endfor %}</div>
+        </div>
+        <div>
+            <h3 class="section-about__heading">Обо мне</h3>
+            <p>В аналитике с 2020. Верю в цифры и в то, что их можно объяснить без матана. Сам работаю руками. Строю системы и решаю проблемы. Иногда — чужие. Чаще — свои. Пишу о данных простым языком</p>
+        </div>
+        <div class="roller">
+            <div class="roller__track roller__track--backward" style="animation-duration: {% RollerTechnologyDuration %}s">{% for item in RollerTechnology %}<span>{% item %}</span>{% endfor %}</div>
+            <div class="roller__track roller__track--backward" style="animation-duration: {% RollerTechnologyDuration %}s">{% for item in RollerTechnology %}<span>{% item %}</span>{% endfor %}</div>
+            <div class="roller__track roller__track--backward" style="animation-duration: {% RollerTechnologyDuration %}s">{% for item in RollerTechnology %}<span>{% item %}</span>{% endfor %}</div>
+        </div>
+    </div>
+</section>
+{% include site-foot.html %}

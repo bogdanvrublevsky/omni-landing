@@ -3,10 +3,13 @@
   "private": true,
   "scripts": {
     "start": "eleventy --serve",
-    "build": "eleventy"
+    "build": "omnibuilder",
+    "preview": "npm run build && serve dist"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2"
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "omni-builder": "file:../omni-builder",
+    "serve": "^14.2.6"
   }
 }
